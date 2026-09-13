@@ -27,6 +27,14 @@ export const SNEAK_PEEK_IMAGES = [
   "/sneak-peek/33.png",
   "/sneak-peek/47.png",
   "/sneak-peek/58.png",
+  "/sneak-peek/4.png",
+  "/sneak-peek/7.png",
+  "/sneak-peek/12.png",
+  "/sneak-peek/19.png",
+  "/sneak-peek/28.png",
+  "/sneak-peek/40.png",
+  "/sneak-peek/55.png",
+  "/sneak-peek/70.png",
 ];
 
 export const ROADMAP = [

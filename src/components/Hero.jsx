@@ -9,8 +9,7 @@ export default function Hero() {
       <div className="hero-copy">
         <span className="eyebrow">Whitelist Open</span>
         <h1 className="title">
-          COMING TO
-          <span className="accent-line">ARC.</span>
+          MINDLESS COMING TO <span className="accent-line">ARC.</span>
         </h1>
         <p className="subtitle">
           {CONFIG.supply} mindless beings. They don&apos;t think. They don&apos;t plan. They
