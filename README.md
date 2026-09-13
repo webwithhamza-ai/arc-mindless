@@ -1,11 +1,14 @@
 # Arc Mindless
 
-WL landing page for Arc Mindless — 5555 mindless souls on ARC. Next.js (App Router) + Neon Postgres.
+WL site for Arc Mindless — 5555 mindless souls on ARC. Next.js (App Router) + Neon Postgres.
 
-## Flow
+## Pages
 
-Landing (scroll to zoom into the mouth, with a screamed sound effect) → tasks (X username,
-like/retweet, EVM address) → whitelisted → confirm spot (quote-tweet link) → confirmed.
+- `/` — hero (eyebrow tag, glow title, tagline, ENTER WHITELIST button)
+- `/sneak-peek` — preview gallery of generated NFT art
+- `/roadmap` — phased roadmap, ending in `$MINDLESS | CA: TBA`
+- `/whitelist` — the funnel: identity + 3 missions (follow/retweet/like, at least 2
+  required) → whitelisted → confirm spot (quote-tweet link) → confirmed (+ share-on-X popup)
 
 ## Setup
 
@@ -31,10 +34,11 @@ created automatically on first request that touches the database.
 
 ## Structure
 
-- `src/app/page.js` — scene state machine (landing/zooming/tasks/whitelisted/confirmSpot/confirmed)
-- `src/components/` — one component per scene
-- `src/lib/config.js` — project constants (handle, announcement tweet URL — edit these)
-- `src/lib/scream.js` — synthesized placeholder "AAAAAA" sound (Web Audio, swap for a real clip later)
+- `src/app/page.js`, `sneak-peek/`, `roadmap/`, `whitelist/` — the four routes
+- `src/components/` — Navbar, Hero, SneakPeek, Roadmap, WhitelistForm, Whitelisted,
+  ConfirmSpot, Confirmed, ShareModal
+- `src/lib/config.js` — project constants (handle, announcement tweet URL, roadmap
+  copy, sneak-peek image list — edit these)
 - `src/lib/db.js` — Neon client, server-only
 - `src/app/api/whitelist/` — route handlers (submit / confirm / lookup)
 - `scripts/` — Python NFT trait extraction + generation from the master PSD (see below)

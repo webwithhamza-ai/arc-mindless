@@ -13,7 +13,6 @@ export default function Whitelisted({ entry, onNext }) {
             key={i}
             style={{
               left: `${(i * 97) % 100}%`,
-              background: i % 3 === 0 ? "var(--pink)" : i % 3 === 1 ? "var(--yellow)" : "var(--white)",
               animationDuration: `${3 + (i % 5)}s`,
               animationDelay: `${(i % 6) * 0.3}s`,
             }}
@@ -25,7 +24,7 @@ export default function Whitelisted({ entry, onNext }) {
         <div className="big-stamp">YOU&apos;RE ON THE LIST</div>
 
         <div className="spot-number">
-          <span style={{ fontWeight: 700, textTransform: "uppercase", fontSize: "0.85rem" }}>
+          <span style={{ fontWeight: 700, textTransform: "uppercase", fontSize: "0.85rem", color: "var(--muted)" }}>
             Your spot
           </span>
           <span className="num">

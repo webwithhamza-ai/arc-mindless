@@ -12,10 +12,10 @@ async function request(path, options) {
   return data;
 }
 
-export function submitWhitelist({ twitterUsername, evmAddress, likedRetweeted }) {
+export function submitWhitelist({ twitterUsername, evmAddress, followed, reposted, liked }) {
   return request("/whitelist", {
     method: "POST",
-    body: JSON.stringify({ twitterUsername, evmAddress, likedRetweeted }),
+    body: JSON.stringify({ twitterUsername, evmAddress, followed, reposted, liked }),
   });
 }
 

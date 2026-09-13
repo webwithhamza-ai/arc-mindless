@@ -1,6 +1,7 @@
 import { ensureSchema, sql } from "@/lib/db";
 
 const SUPPLY = 5555;
+const MIN_MISSIONS = 2;
 const EVM_RE = /^0x[a-fA-F0-9]{40}$/;
 const HANDLE_RE = /^[A-Za-z0-9_]{1,15}$/;
 
@@ -9,7 +10,10 @@ export async function POST(req) {
     const body = await req.json().catch(() => ({}));
     const twitterUsername = String(body?.twitterUsername || "").trim().replace(/^@/, "");
     const evmAddress = String(body?.evmAddress || "").trim();
-    const likedRetweeted = Boolean(body?.likedRetweeted);
+    const followed = Boolean(body?.followed);
+    const reposted = Boolean(body?.reposted);
+    const liked = Boolean(body?.liked);
+    const missionCount = [followed, reposted, liked].filter(Boolean).length;
 
     if (!HANDLE_RE.test(twitterUsername)) {
       return Response.json({ error: "Invalid X username" }, { status: 400 });
@@ -17,8 +21,8 @@ export async function POST(req) {
     if (!EVM_RE.test(evmAddress)) {
       return Response.json({ error: "Invalid EVM address" }, { status: 400 });
     }
-    if (!likedRetweeted) {
-      return Response.json({ error: "Like & retweet step not completed" }, { status: 400 });
+    if (missionCount < MIN_MISSIONS) {
+      return Response.json({ error: `Complete at least ${MIN_MISSIONS} missions` }, { status: 400 });
     }
 
     await ensureSchema();
@@ -29,11 +33,15 @@ export async function POST(req) {
     const spotNumber = existing[0]?.spot_number ?? Math.floor(Math.random() * SUPPLY) + 1;
 
     const [row] = await sql`
-      INSERT INTO whitelist_entries (twitter_username, evm_address, liked_retweeted, spot_number, submitted_at)
-      VALUES (${twitterUsername}, ${evmAddress}, ${likedRetweeted}, ${spotNumber}, now())
+      INSERT INTO whitelist_entries
+        (twitter_username, evm_address, followed, reposted, liked, spot_number, submitted_at)
+      VALUES
+        (${twitterUsername}, ${evmAddress}, ${followed}, ${reposted}, ${liked}, ${spotNumber}, now())
       ON CONFLICT (evm_address) DO UPDATE SET
         twitter_username = EXCLUDED.twitter_username,
-        liked_retweeted = EXCLUDED.liked_retweeted,
+        followed = EXCLUDED.followed,
+        reposted = EXCLUDED.reposted,
+        liked = EXCLUDED.liked,
         submitted_at = now()
       RETURNING twitter_username, evm_address, spot_number, quote_link
     `;
