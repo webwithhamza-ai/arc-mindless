@@ -3,7 +3,7 @@
 import { CONFIG } from "@/lib/config";
 
 export default function ShareModal({ entry, onClose }) {
-  const shareText = `I just secured my spot on the ${CONFIG.projectName} whitelist (#${entry.spotNumber}/${CONFIG.supply}) on ${CONFIG.chain}. 👹`;
+  const shareText = `I'm #${entry.spotNumber} of ${CONFIG.supply} on the Arc Mindless whitelist on ${CONFIG.chain}.`;
   const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(
     CONFIG.announcementTweetUrl
   )}`;
@@ -17,9 +17,9 @@ export default function ShareModal({ entry, onClose }) {
         <span className="eyebrow" style={{ justifyContent: "center" }}>
           Spot Confirmed
         </span>
-        <h2 style={{ fontSize: "1.4rem" }}>SPREAD THE SCREAM</h2>
+        <h2 style={{ fontSize: "1.4rem" }}>TELL SOMEONE</h2>
         <p className="card-lead">
-          Let the tribe know you&apos;re in. One post helps more mindless souls find the mouth.
+          Let people know you&apos;re on the list. One post helps more people find this.
         </p>
         <a
           className="btn btn-primary btn-block"

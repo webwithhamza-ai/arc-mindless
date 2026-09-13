@@ -14,8 +14,9 @@ const comicNeue = Comic_Neue({
 });
 
 export const metadata = {
-  title: "ARC MINDLESS — WL",
-  description: "Arc Mindless — 5555 mindless souls, coming to ARC. Get on the WL.",
+  title: "Arc Mindless NFT | 5,555 Mindless Beings on ARC",
+  description:
+    "Arc Mindless NFT. 5,555 mindless beings coming to ARC. No thoughts. No plans. Just vibes. Whitelist open now.",
   icons: { icon: "/favicon.png" },
 };
 

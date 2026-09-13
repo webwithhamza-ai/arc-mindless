@@ -78,9 +78,13 @@ export default function WhitelistForm({ onSubmit, initial, pending, error }) {
           <span className="section-num-box">01</span>
           <div>
             <div className="section-num-label">Identity</div>
-            <h2>Mark your signal</h2>
+            <h2>Tell us who you are</h2>
           </div>
         </div>
+
+        <p className="card-lead" style={{ marginTop: "-0.9rem" }}>
+          Two fields. Even you can manage this.
+        </p>
 
         <div className="field">
           <label htmlFor="username">X username</label>
@@ -114,9 +118,13 @@ export default function WhitelistForm({ onSubmit, initial, pending, error }) {
           <span className="section-num-box">02</span>
           <div>
             <div className="section-num-label">Missions</div>
-            <h2>Show up for the tribe</h2>
+            <h2>Do three easy things</h2>
           </div>
         </div>
+
+        <p className="card-lead" style={{ marginTop: "-0.9rem" }}>
+          Two out of three gets you in. We are not strict, we are mindless.
+        </p>
 
         <Mission
           label={`Follow ${CONFIG.twitterHandle}`}
@@ -147,20 +155,21 @@ export default function WhitelistForm({ onSubmit, initial, pending, error }) {
 
         <div className="progress-panel">
           <div className="progress-panel-head">
-            <span>Ritual progress</span>
+            <span>Progress</span>
             <strong>{missionCount}/3</strong>
           </div>
           <div className="progress-track">
             <div className="progress-fill" style={{ width: `${(missionCount / 3) * 100}%` }} />
           </div>
-          <p className="progress-hint">Complete at least {MIN_MISSIONS} missions to transmit.</p>
+          <p className="progress-hint">Finish {MIN_MISSIONS} of 3 to submit.</p>
         </div>
 
         {error && <span className="error">{error}</span>}
 
         <button type="submit" className="btn btn-primary btn-block" disabled={pending}>
-          {pending ? "TRANSMITTING…" : "TRANSMIT APPLICATION →"}
+          {pending ? "SUBMITTING…" : "SUBMIT AND STOP THINKING →"}
         </button>
+        <p className="progress-hint">One wallet per person. Duplicates get removed.</p>
       </form>
     </section>
   );

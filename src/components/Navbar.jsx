@@ -9,13 +9,13 @@ export default function Navbar() {
       <Link href="/" className="navbar-brand">
         <span className="navbar-logo">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/art.png" alt="" aria-hidden="true" />
+          <img src="/art.png" alt="Arc Mindless NFT logo" />
         </span>
         <span className="navbar-name">{CONFIG.projectName}</span>
       </Link>
 
       <nav className="navbar-links">
-        <Link href="/sneak-peek">Sneak Peek</Link>
+        <Link href="/sneak-peek">The Beings</Link>
         <Link href="/roadmap">Roadmap</Link>
         <Link href="/whitelist">Whitelist</Link>
       </nav>

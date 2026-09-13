@@ -1,7 +1,7 @@
 // Edit these to point at your real socials / project details.
 export const CONFIG = {
   projectName: "ARC MINDLESS",
-  supply: 5555,
+  supply: "5,555",
   chain: "ARC",
   tokenTicker: "$MINDLESS",
   twitterHandle: "@ArcMindless",
@@ -10,12 +10,12 @@ export const CONFIG = {
 };
 
 export const BASE_IMAGES = [
-  "/bases/00_gold.png",
-  "/bases/01_silver.png",
-  "/bases/02_Brown.png",
-  "/bases/03_Black.png",
-  "/bases/04_Dark.png",
-  "/bases/05_White.png",
+  { src: "/bases/00_gold.png", color: "gold" },
+  { src: "/bases/01_silver.png", color: "silver" },
+  { src: "/bases/02_Brown.png", color: "brown" },
+  { src: "/bases/03_Black.png", color: "black" },
+  { src: "/bases/04_Dark.png", color: "dark" },
+  { src: "/bases/05_White.png", color: "white" },
 ];
 
 export const SNEAK_PEEK_IMAGES = [
@@ -33,23 +33,23 @@ export const ROADMAP = [
   {
     phase: "01",
     title: "AWAKENING",
-    body: "Whitelist opens. The tribe forms, traits get teased, the mouth starts screaming.",
+    body: "Whitelist opens. Traits get teased. Not a single thought is had.",
     active: true,
   },
   {
     phase: "02",
-    title: "THE SCREAM",
-    body: `${5555} Arc Mindless creatures mint live on ARC.`,
+    title: "THE MINT",
+    body: "5,555 Arc Mindless beings mint live on ARC.",
   },
   {
     phase: "03",
-    title: "MINDLESS TRIBE",
-    body: "Holder utilities, collabs, and community drops for anyone who made it through the mouth.",
+    title: "HOLDERS",
+    body: "Utilities, collabs and community drops for everyone holding a being.",
   },
   {
     phase: "04",
     title: "$MINDLESS | CA: TBA",
-    body: "Token launch for the tribe. Contract address to be announced — don't trust anyone posting one early.",
+    body: "Token launch for holders. The contract address gets posted here and on @ArcMindless first. Anyone sharing one before that is lying to you.",
     highlight: true,
   },
 ];

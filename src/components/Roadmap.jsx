@@ -7,7 +7,7 @@ export default function Roadmap() {
     <section className="section" id="roadmap">
       <div className="section-head">
         <span className="eyebrow">Roadmap</span>
-        <h2 className="section-title">HOW THIS GOES</h2>
+        <h2 className="section-title">THE PLAN THEY DIDN&apos;T MAKE</h2>
       </div>
 
       <div className="roadmap-list">

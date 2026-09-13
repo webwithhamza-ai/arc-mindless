@@ -5,7 +5,7 @@ import { CONFIG } from "@/lib/config";
 
 const TWEET_LINK_RE = /^https?:\/\/(www\.)?(twitter|x)\.com\/[A-Za-z0-9_]{1,15}\/status\/\d+/;
 
-const QUOTE_TEXT = `I'm mindless on ${CONFIG.chain}. ${CONFIG.projectName} 👹`;
+const QUOTE_TEXT = `I'm mindless on ${CONFIG.chain}. Arc Mindless.`;
 
 const quoteIntentUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
   CONFIG.announcementTweetUrl
@@ -61,7 +61,7 @@ export default function ConfirmSpot({ onSubmit, pending, error }) {
         {error && <span className="error">{error}</span>}
 
         <button type="submit" className="btn btn-primary btn-block" disabled={pending}>
-          {pending ? "SAVING…" : "SUBMIT & LOCK IN SPOT"}
+          {pending ? "SAVING…" : "SUBMIT AND LOCK IN SPOT"}
         </button>
       </form>
     </section>

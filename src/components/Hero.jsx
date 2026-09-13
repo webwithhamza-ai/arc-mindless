@@ -13,27 +13,21 @@ export default function Hero() {
           <span className="accent-line">ARC.</span>
         </h1>
         <p className="subtitle">
-          {CONFIG.supply} mindless souls. One wallet, three moves, your shot at the world
-          before the gates open.
+          {CONFIG.supply} mindless beings. They don&apos;t think. They don&apos;t plan. They
+          just exist.
         </p>
-        <div className="hero-links">
-          <a href={CONFIG.twitterUrl} target="_blank" rel="noopener noreferrer">
-            x.com/ArcMindless
-          </a>
-          <a href={CONFIG.announcementTweetUrl} target="_blank" rel="noopener noreferrer">
-            View announcement ↗
-          </a>
-        </div>
         <Link href="/whitelist" className="btn btn-primary">
-          ENTER WHITELIST →
+          GET ON THE LIST →
         </Link>
       </div>
 
+      <span className="eyebrow">Six bases. One expression.</span>
+
       <div className="hero-bases">
-        {BASE_IMAGES.map((src) => (
+        {BASE_IMAGES.map(({ src, color }) => (
           <div className="hero-base-item" key={src}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={src} alt="Arc Mindless base" />
+            <img src={src} alt={`Arc Mindless NFT base, ${color}`} />
           </div>
         ))}
       </div>

@@ -21,7 +21,7 @@ export default function Whitelisted({ entry, onNext }) {
       </div>
 
       <div className="card">
-        <div className="big-stamp">YOU&apos;RE ON THE LIST</div>
+        <div className="big-stamp">YOU&apos;RE ON THE LIST.</div>
 
         <div className="spot-number">
           <span style={{ fontWeight: 700, textTransform: "uppercase", fontSize: "0.85rem", color: "var(--muted)" }}>
@@ -41,9 +41,7 @@ export default function Whitelisted({ entry, onNext }) {
           <span>{entry.evmAddress}</span>
         </div>
 
-        <p className="card-lead">
-          One last step — confirm your spot by quoting the announcement post.
-        </p>
+        <p className="card-lead">Go do something else.</p>
 
         <button className="btn btn-primary btn-block" onClick={onNext}>
           CONFIRM MY SPOT →
