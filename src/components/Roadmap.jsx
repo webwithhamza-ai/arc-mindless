@@ -12,7 +12,11 @@ export default function Roadmap() {
 
       <div className="roadmap-list">
         {ROADMAP.map((step) => (
-          <div className={`roadmap-item ${step.highlight ? "highlight" : ""}`} key={step.phase}>
+          <div
+            className={`roadmap-item ${step.highlight ? "highlight" : ""} ${step.active ? "active" : ""}`}
+            key={step.phase}
+          >
+            {step.active && <span className="roadmap-active-tag">Active now</span>}
             <span className="roadmap-phase">{step.phase}</span>
             <div className="roadmap-body">
               <h3>{step.title}</h3>

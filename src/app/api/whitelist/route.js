@@ -30,19 +30,19 @@ export async function POST(req) {
     const existing = await sql`
       SELECT spot_number FROM whitelist_entries WHERE evm_address = ${evmAddress}
     `;
-    const spotNumber = existing[0]?.spot_number ?? Math.floor(Math.random() * SUPPLY) + 1;
+    if (existing.length > 0) {
+      return Response.json(
+        { error: "This wallet is already registered for the whitelist." },
+        { status: 409 }
+      );
+    }
+    const spotNumber = Math.floor(Math.random() * SUPPLY) + 1;
 
     const [row] = await sql`
       INSERT INTO whitelist_entries
         (twitter_username, evm_address, followed, reposted, liked, spot_number, submitted_at)
       VALUES
         (${twitterUsername}, ${evmAddress}, ${followed}, ${reposted}, ${liked}, ${spotNumber}, now())
-      ON CONFLICT (evm_address) DO UPDATE SET
-        twitter_username = EXCLUDED.twitter_username,
-        followed = EXCLUDED.followed,
-        reposted = EXCLUDED.reposted,
-        liked = EXCLUDED.liked,
-        submitted_at = now()
       RETURNING twitter_username, evm_address, spot_number, quote_link
     `;
 
@@ -54,6 +54,13 @@ export async function POST(req) {
     });
   } catch (err) {
     console.error("[POST /api/whitelist]", err);
+    if (err?.code === "23505") {
+      // Unique-constraint race: two near-simultaneous submits for the same address.
+      return Response.json(
+        { error: "This wallet is already registered for the whitelist." },
+        { status: 409 }
+      );
+    }
     return Response.json({ error: err.message || "Server error" }, { status: 503 });
   }
 }

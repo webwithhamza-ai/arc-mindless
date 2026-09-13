@@ -5,9 +5,11 @@ import { CONFIG } from "@/lib/config";
 
 const TWEET_LINK_RE = /^https?:\/\/(www\.)?(twitter|x)\.com\/[A-Za-z0-9_]{1,15}\/status\/\d+/;
 
+const QUOTE_TEXT = `I'm mindless on ${CONFIG.chain}. ${CONFIG.projectName} 👹`;
+
 const quoteIntentUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
   CONFIG.announcementTweetUrl
-)}&text=${encodeURIComponent(`I'm mindless on ${CONFIG.chain}. ${CONFIG.projectName} 👹`)}`;
+)}&text=${encodeURIComponent(QUOTE_TEXT)}`;
 
 export default function ConfirmSpot({ onSubmit, pending, error }) {
   const [link, setLink] = useState("");
@@ -29,8 +31,11 @@ export default function ConfirmSpot({ onSubmit, pending, error }) {
       <form className="card" onSubmit={handleSubmit}>
         <h2>CONFIRM YOUR SPOT</h2>
         <p className="card-lead">
-          Quote the announcement post, then paste the link to your quote tweet below.
+          Quote the announcement post with the text below, then paste the link to your
+          quote tweet.
         </p>
+
+        <p className="quote-preview">&ldquo;{QUOTE_TEXT}&rdquo;</p>
 
         <a
           className="btn btn-block"

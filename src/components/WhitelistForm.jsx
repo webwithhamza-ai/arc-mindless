@@ -7,13 +7,51 @@ const EVM_RE = /^0x[a-fA-F0-9]{40}$/;
 const HANDLE_RE = /^@?[A-Za-z0-9_]{1,15}$/;
 const MIN_MISSIONS = 2;
 
+const FOLLOW_URL = CONFIG.twitterUrl;
+const TWEET_URL = CONFIG.announcementTweetUrl;
+
+function Mission({ label, url, opened, verified, onOpen, onVerify }) {
+  return (
+    <div className={`mission-row ${verified ? "mission-done" : ""}`}>
+      <span className="mission-icon">𝕏</span>
+      <span className="mission-info">
+        <strong>{label}</strong>
+        <span className="mission-url">{url}</span>
+      </span>
+      <span className="mission-actions">
+        <a
+          className="btn mission-open"
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={onOpen}
+        >
+          OPEN ↗
+        </a>
+        <button
+          type="button"
+          className={`btn mission-verify ${verified ? "done" : ""}`}
+          disabled={!opened}
+          onClick={onVerify}
+        >
+          {verified ? "VERIFIED ✓" : "VERIFY"}
+        </button>
+      </span>
+    </div>
+  );
+}
+
 export default function WhitelistForm({ onSubmit, initial, pending, error }) {
   const [username, setUsername] = useState(initial?.twitterUsername || "");
   const [evm, setEvm] = useState(initial?.evmAddress || "");
-  const [followed, setFollowed] = useState(!!initial?.followed);
-  const [reposted, setReposted] = useState(!!initial?.reposted);
-  const [liked, setLiked] = useState(!!initial?.liked);
   const [touched, setTouched] = useState(false);
+
+  const [followOpened, setFollowOpened] = useState(false);
+  const [followed, setFollowed] = useState(!!initial?.followed);
+  const [repostOpened, setRepostOpened] = useState(false);
+  const [reposted, setReposted] = useState(!!initial?.reposted);
+  const [likeOpened, setLikeOpened] = useState(false);
+  const [liked, setLiked] = useState(!!initial?.liked);
 
   const usernameValid = HANDLE_RE.test(username.trim());
   const evmValid = EVM_RE.test(evm.trim());
@@ -80,71 +118,32 @@ export default function WhitelistForm({ onSubmit, initial, pending, error }) {
           </div>
         </div>
 
-        <label className="mission-row">
-          <span className="mission-icon">𝕏</span>
-          <span className="mission-info">
-            <strong>Follow {CONFIG.twitterHandle}</strong>
-            <span>X // Required</span>
-          </span>
-          <a
-            className="mission-open"
-            href={`https://x.com/${CONFIG.twitterHandle.replace(/^@/, "")}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            OPEN ↗
-          </a>
-          <input
-            type="checkbox"
-            className="mission-check"
-            checked={followed}
-            onChange={(e) => setFollowed(e.target.checked)}
-          />
-        </label>
+        <Mission
+          label={`Follow ${CONFIG.twitterHandle}`}
+          url={FOLLOW_URL}
+          opened={followOpened}
+          verified={followed}
+          onOpen={() => setFollowOpened(true)}
+          onVerify={() => setFollowed(true)}
+        />
 
-        <label className="mission-row">
-          <span className="mission-icon">𝕏</span>
-          <span className="mission-info">
-            <strong>Retweet the announcement</strong>
-            <span>X // Required</span>
-          </span>
-          <a
-            className="mission-open"
-            href={CONFIG.announcementTweetUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            OPEN ↗
-          </a>
-          <input
-            type="checkbox"
-            className="mission-check"
-            checked={reposted}
-            onChange={(e) => setReposted(e.target.checked)}
-          />
-        </label>
+        <Mission
+          label="Retweet the announcement"
+          url={TWEET_URL}
+          opened={repostOpened}
+          verified={reposted}
+          onOpen={() => setRepostOpened(true)}
+          onVerify={() => setReposted(true)}
+        />
 
-        <label className="mission-row">
-          <span className="mission-icon">𝕏</span>
-          <span className="mission-info">
-            <strong>Like the announcement</strong>
-            <span>X // Required</span>
-          </span>
-          <a
-            className="mission-open"
-            href={CONFIG.announcementTweetUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            OPEN ↗
-          </a>
-          <input
-            type="checkbox"
-            className="mission-check"
-            checked={liked}
-            onChange={(e) => setLiked(e.target.checked)}
-          />
-        </label>
+        <Mission
+          label="Like the announcement"
+          url={TWEET_URL}
+          opened={likeOpened}
+          verified={liked}
+          onOpen={() => setLikeOpened(true)}
+          onVerify={() => setLiked(true)}
+        />
 
         <div className="progress-panel">
           <div className="progress-panel-head">

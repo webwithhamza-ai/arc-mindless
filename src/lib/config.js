@@ -4,12 +4,19 @@ export const CONFIG = {
   supply: 5555,
   chain: "ARC",
   tokenTicker: "$MINDLESS",
-  // TODO: replace with your real X handle (used for the Follow mission + footer)
   twitterHandle: "@ArcMindless",
-  // TODO: replace with the real announcement post URL (Retweet/Like missions +
-  // source tweet for the "quote the post" confirm-spot step)
-  announcementTweetUrl: "https://x.com/ArcMindless/status/0000000000000000000",
+  twitterUrl: "https://x.com/ArcMindless",
+  announcementTweetUrl: "https://x.com/ArcMindless/status/2099045629435822329",
 };
+
+export const BASE_IMAGES = [
+  "/bases/00_gold.png",
+  "/bases/01_silver.png",
+  "/bases/02_Brown.png",
+  "/bases/03_Black.png",
+  "/bases/04_Dark.png",
+  "/bases/05_White.png",
+];
 
 export const SNEAK_PEEK_IMAGES = [
   "/sneak-peek/2.png",
@@ -27,11 +34,12 @@ export const ROADMAP = [
     phase: "01",
     title: "AWAKENING",
     body: "Whitelist opens. The tribe forms, traits get teased, the mouth starts screaming.",
+    active: true,
   },
   {
     phase: "02",
     title: "THE SCREAM",
-    body: `${5555} Arc Mindless creatures mint live on ${"ARC"}.`,
+    body: `${5555} Arc Mindless creatures mint live on ARC.`,
   },
   {
     phase: "03",
