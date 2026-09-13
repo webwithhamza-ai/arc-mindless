@@ -7,8 +7,12 @@ const EVM_RE = /^0x[a-fA-F0-9]{40}$/;
 const HANDLE_RE = /^@?[A-Za-z0-9_]{1,15}$/;
 const MIN_MISSIONS = 2;
 
-const FOLLOW_URL = CONFIG.twitterUrl;
-const TWEET_URL = CONFIG.announcementTweetUrl;
+// X's intent endpoints open a small dialog focused on that one action (the
+// Follow/Retweet/Like button itself) instead of dropping the user on the
+// full tweet/profile page to go find it themselves.
+const FOLLOW_INTENT_URL = `https://x.com/intent/follow?screen_name=${CONFIG.twitterHandle.replace(/^@/, "")}`;
+const RETWEET_INTENT_URL = `https://x.com/intent/retweet?tweet_id=${CONFIG.announcementTweetId}`;
+const LIKE_INTENT_URL = `https://x.com/intent/like?tweet_id=${CONFIG.announcementTweetId}`;
 
 function Mission({ label, url, opened, verified, onOpen, onVerify }) {
   return (
@@ -16,7 +20,6 @@ function Mission({ label, url, opened, verified, onOpen, onVerify }) {
       <span className="mission-icon">𝕏</span>
       <span className="mission-info">
         <strong>{label}</strong>
-        <span className="mission-url">{url}</span>
       </span>
       <span className="mission-actions">
         <a
@@ -128,7 +131,7 @@ export default function WhitelistForm({ onSubmit, initial, pending, error }) {
 
         <Mission
           label={`Follow ${CONFIG.twitterHandle}`}
-          url={FOLLOW_URL}
+          url={FOLLOW_INTENT_URL}
           opened={followOpened}
           verified={followed}
           onOpen={() => setFollowOpened(true)}
@@ -137,7 +140,7 @@ export default function WhitelistForm({ onSubmit, initial, pending, error }) {
 
         <Mission
           label="Retweet the announcement"
-          url={TWEET_URL}
+          url={RETWEET_INTENT_URL}
           opened={repostOpened}
           verified={reposted}
           onOpen={() => setRepostOpened(true)}
@@ -146,7 +149,7 @@ export default function WhitelistForm({ onSubmit, initial, pending, error }) {
 
         <Mission
           label="Like the announcement"
-          url={TWEET_URL}
+          url={LIKE_INTENT_URL}
           opened={likeOpened}
           verified={liked}
           onOpen={() => setLikeOpened(true)}

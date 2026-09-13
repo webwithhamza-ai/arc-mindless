@@ -636,13 +636,6 @@ input {
   font-size: 0.95rem;
 }
 
-.mission-url {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--muted);
-  word-break: break-all;
-}
-
 .mission-actions {
   display: flex;
   align-items: center;
