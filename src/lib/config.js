@@ -6,8 +6,8 @@ export const CONFIG = {
   tokenTicker: "$MINDLESS",
   twitterHandle: "@ArcMindless",
   twitterUrl: "https://x.com/ArcMindless",
-  announcementTweetId: "2099602924972478798",
-  announcementTweetUrl: "https://x.com/ArcMindless/status/2099602924972478798",
+  announcementTweetId: "2100170917955399802",
+  announcementTweetUrl: "https://x.com/ArcMindless/status/2100170917955399802",
 };
 
 export const BASE_IMAGES = [
